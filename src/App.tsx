@@ -15,9 +15,9 @@ function App() {
 
     return (
         <ul>
-            {money.map((objectFromMoneyArray) => {
+            {money.map((objectFromMoneyArray, index) => {
                 return (
-                    <li>
+                    <li key={index}>
                         <span> {objectFromMoneyArray.banknots} </span>
                         <span> {objectFromMoneyArray.value} </span>
                         <span> {objectFromMoneyArray.number} </span>
