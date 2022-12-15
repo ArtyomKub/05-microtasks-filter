@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import './App.css';
 
+type FilterType = 'ALL' | 'RUBLS' | 'DOLLARS'
+
+
 function App() {
     const [money, setMoney] = useState([
         {banknots: 'Dollars', value: 100, number: ' a1234567890'},
@@ -13,7 +16,19 @@ function App() {
         {banknots: 'RUBLS', value: 50, number: ' v1234567890'},
     ])
 
-    let currentMoney = money.filter((filteredMoney) => filteredMoney.banknots === 'RUBLS')
+    const [filter, setFilter] = useState<FilterType>('ALL')
+
+    let currentMoney = money;
+    if (filter === 'DOLLARS') {
+        currentMoney = money.filter((filteredMoney) => filteredMoney.banknots === 'Dollars');
+    }
+    if (filter === 'RUBLS') {
+        currentMoney = money.filter((filteredMoney) => filteredMoney.banknots === 'RUBLS');
+    }
+
+    const onClickFilterHandler = (nameButton: FilterType) => {
+        setFilter(nameButton)
+    }
 
     return (
         <div>
@@ -29,12 +44,11 @@ function App() {
                 })}
             </ul>
             <div style={{marginLeft: '35px'}}>
-                <button>ALL</button>
-                <button>RUBLS</button>
-                <button>DOLLARS</button>
+                <button onClick={() => onClickFilterHandler('ALL')}>ALL</button>
+                <button onClick={() => onClickFilterHandler('RUBLS')}>RUBLS</button>
+                <button onClick={() => onClickFilterHandler('DOLLARS')}>DOLLARS</button>
             </div>
         </div>
-
     );
 }
 
