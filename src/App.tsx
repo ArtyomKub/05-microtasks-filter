@@ -13,18 +13,28 @@ function App() {
         {banknots: 'RUBLS', value: 50, number: ' v1234567890'},
     ])
 
+    let currentMoney = money.filter((filteredMoney) => filteredMoney.banknots === 'RUBLS')
+
     return (
-        <ul>
-            {money.map((objectFromMoneyArray, index) => {
-                return (
-                    <li key={index}>
-                        <span> {objectFromMoneyArray.banknots} </span>
-                        <span> {objectFromMoneyArray.value} </span>
-                        <span> {objectFromMoneyArray.number} </span>
-                    </li>
-                )
-            })}
-        </ul>
+        <div>
+            <ul>
+                {currentMoney.map((objectFromMoneyArray, index) => {
+                    return (
+                        <li key={index}>
+                            <span> {objectFromMoneyArray.banknots} </span>
+                            <span> {objectFromMoneyArray.value} </span>
+                            <span> {objectFromMoneyArray.number} </span>
+                        </li>
+                    )
+                })}
+            </ul>
+            <div style={{marginLeft: '35px'}}>
+                <button>ALL</button>
+                <button>RUBLS</button>
+                <button>DOLLARS</button>
+            </div>
+        </div>
+
     );
 }
 
